@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "BlurChat",
+  "version": "1.0.0",
+  "description": "Blur the chats on WhatsApp Web for better privacy.",
+  "permissions": ["scripting"],
+  "host_permissions": ["https://web.whatsapp.com/*"],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "action": {
+    "default_title": "BlurChat",
+    "default_icon": "assets/icon.png"
+  },
+  "icons": {
+    "16": "assets/icon.png",
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "css": ["src/blur.css"]
+    }
+  ],
+  "author": "Your Name or Your Company Name",
+  "homepage_url": "https://github.com/yourusername/blurchat",
+  "license": "MIT"
+}

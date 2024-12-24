@@ -1,7 +1,7 @@
-# ![BlurChat Icon](assets/icon.png) BlurChat
+# BlurChat
 
 
-
+![BlurChat Icon](assets/icon.png)
 BlurChat is a simple Chrome extension designed to blur the chat window on [WhatsApp Web](https://web.whatsapp.com), enhancing your privacy in public settings. By blurring the chat interface, it ensures that your conversations remain private even when others are in your vicinity. 
 
 With just a click of a button, you can activate the blur effect and protect your messages from prying eyes.

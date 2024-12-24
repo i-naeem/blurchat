@@ -7,7 +7,7 @@
 </a>
 <h3 align="center">BlurChat</h3>
 <p align="center">
-BlurChat is a simple Chrome extension that blurs the chat window on <a href="https://web.whatsapp.com">WhatsApp Web</a> to enhance privacy in public settings. With just a click of a button, the extension blurs your chat window and sidebar to ensure that your conversations remain private.
+BlurChat is a simple Chrome extension that blurs the chat window on <a href="https://web.whatsapp.com">WhatsApp Web</a> to enhance privacy in public settings. With just a click of a button, the extension blurs your chat window and sidebar, ensuring that your conversations remain private.
 <br />
 
 <a href="https://github.com/i-naeem/blurchat">View Demo</a>
@@ -31,7 +31,6 @@ BlurChat is a simple Chrome extension that blurs the chat window on <a href="htt
 
 Here are some screenshots showing the extension in action:
 
-
 ### 1. **Home Page with Sidebar Blurred**
 
 ![Home Page Blurred](assets/home-ss.jpeg)
@@ -43,7 +42,6 @@ In this screenshot, the home page is blurred, including the sidebar where contac
 ![Chat Window Blurred](assets/chat-ss.jpeg)
 
 This image shows the chat window with the blur effect applied, ensuring your messages are not visible.
-
 
 ## Installation
 
@@ -61,16 +59,17 @@ Follow these simple steps to install the BlurChat extension in Chrome:
 3. **Load the Extension:**
    - Click on the **Load unpacked** button.
    - Select the `BlurChat` folder (the folder that contains the extension files you downloaded or cloned).
+
 4. **Complete Installation:**
    - The extension will now be installed and available in your Chrome browser.
 
-## Usage
+## Roadmap
 
-1. Open [web.whatsapp.com](https://web.whatsapp.com) in your Chrome browser.
-2. Click the **BlurChat** icon in the Chrome toolbar to activate the blur effect on the chat window and sidebar.
-3. The chat window and sidebar will now be blurred, offering increased privacy.
-
-To remove the blur effect, simply click the **BlurChat** icon again.
+- :heavy_check_mark: Add a README.
+- :black_large_square: Implement feature to allow users to disable the extension from the icon.
+- :black_large_square: Allow users to choose which sections of the page to blur (e.g., chat window, sidebar).
+- :black_large_square: Let users control the intensity of the blur effect.
+- :black_large_square: Improve UI/UX with custom settings for blur preferences.
 
 ## License
 
@@ -88,3 +87,4 @@ If you have suggestions, bug fixes, or improvements, feel free to open an issue 
 2. Create a new branch for your feature or bug fix.
 3. Commit your changes and push to your forked repository.
 4. Open a pull request to the main repository.
+

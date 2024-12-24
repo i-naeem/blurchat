@@ -66,7 +66,7 @@ Follow these simple steps to install the BlurChat extension in Chrome:
 ## Roadmap
 
 - :heavy_check_mark: Add a README.
-- :black_large_square: Implement feature to allow users to disable the extension from the icon.
+- :heavy_check_mark: Implement feature to allow users to disable the extension from the icon.
 - :black_large_square: Allow users to choose which sections of the page to blur (e.g., chat window, sidebar).
 - :black_large_square: Let users control the intensity of the blur effect.
 - :black_large_square: Improve UI/UX with custom settings for blur preferences.
@@ -88,3 +88,8 @@ If you have suggestions, bug fixes, or improvements, feel free to open an issue 
 3. Commit your changes and push to your forked repository.
 4. Open a pull request to the main repository.
 
+## Contact
+
+Naeem - [@nemoxhan](https://twitter.com/0x656e)
+
+Project Link: [https://github.com/i-naeem/blurchat](https://github.com/i-naeem/heyming)

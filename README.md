@@ -33,13 +33,13 @@ Here are some screenshots showing the extension in action:
 
 ### 1. **Chat Window Blurred**
 
-![Chat Window Blurred](assets/chat-ss.png)
+![Chat Window Blurred](assets/chat-ss.jpeg)
 
 This image shows the chat window with the blur effect applied, ensuring your messages are not visible.
 
 ### 2. **Home Page with Sidebar Blurred**
 
-![Home Page Blurred](assets/home-ss.png)
+![Home Page Blurred](assets/home-ss.jpeg)
 
 In this screenshot, the home page is blurred, including the sidebar where contacts are listed, providing additional privacy.
 

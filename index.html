@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlurChat - Protect Your WhatsApp Privacy | Chrome Extension</title>
+    <meta name="description" content="BlurChat is a Chrome extension that enhances your privacy by blurring WhatsApp Web chats. Keep your conversations confidential in public settings.">
+    <meta name="keywords" content="WhatsApp, privacy, Chrome extension, blur, chat privacy">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous" defer></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "BlurChat",
+      "operatingSystem": "Chrome",
+      "applicationCategory": "BrowserApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0"
+      },
+      "description": "BlurChat is a Chrome extension that enhances your privacy by blurring WhatsApp Web chats."
+    }
+    </script>
+    <style>
+        :root {
+            --primary-color: #25D366;
+            --secondary-color: #128C7E;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --white: #fff;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 300;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 0;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .features {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .how-it-works {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex-basis: calc(25% - 20px);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            line-height: 40px;
+            margin-bottom: 15px;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .demo {
+            padding: 80px 0;
+            background-color: var(--bg-color);
+        }
+
+        .demo h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        .demo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .demo-item {
+            flex-basis: calc(50% - 15px);
+            text-align: center;
+        }
+
+        .demo-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .demo-item p {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background-color: var(--bg-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .testimonial cite {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .faq {
+            padding: 80px 0;
+            background-color: var(--bg-color);
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        details {
+            background-color: var(--white);
+            margin-bottom: 10px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        details p {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        footer {
+            background-color: var(--text-color);
+            color: var(--white);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-social ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-image {
+                margin-top: 40px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+
+            .step {
+                flex-basis: 100%;
+                margin-bottom: 30px;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--white);
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                margin: 10px 0;
+            }
+
+            .demo-item {
+                flex-basis: 100%;
+            }
+        }
+
+.hero-container { 
+display: flex;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo" aria-label="BlurChat logo">
+                    <img src="https://raw.githubusercontent.com/i-naeem/blurchat/refs/heads/alpha/assets/icon.png" alt="BlurChat Logo" width="40" height="40">
+                    BlurChat
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="https://github.com/i-naeem/blurchat" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-container">
+
+	<div class="hero-content">
+                    <h1>Protect Your WhatsApp Privacy</h1>
+                    <p>BlurChat is a powerful Chrome extension that safeguards your WhatsApp Web conversations by blurring chats and contacts, ensuring your privacy in public settings.</p>
+                    <div class="cta-buttons">
+                        <a href="https://github.com/i-naeem/blurchat/releases/tag/v1.0.0" class="btn btn-primary" id="install-extension">Add to Chrome</a>
+                        <a href="#demo" class="btn btn-secondary">See It in Action</a>
+                    </div>
+                </div>
+<div class="hero-image">
+                    <img src="https://raw.githubusercontent.com/i-naeem/blurchat/refs/heads/alpha/assets/chat-ss.jpeg" alt="BlurChat in action" width="500" height="300" loading="lazy">
+                </div>  
+              
+                
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Why Choose BlurChat?</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-user-shield" aria-hidden="true"></i>
+                        <h3>Enhanced Privacy</h3>
+                        <p>Blur your chat window and sidebar to keep your conversations and contacts confidential.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bolt" aria-hidden="true"></i>
+                        <h3>Quick Toggle</h3>
+                        <p>Enable or disable blur with just one click, giving you full control over your privacy.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-feather" aria-hidden="true"></i>
+                        <h3>Lightweight</h3>
+                        <p>Enjoy seamless WhatsApp usage with our resource-efficient extension.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-cogs" aria-hidden="true"></i>
+                        <h3>Easy Setup</h3>
+                        <p>Install BlurChat in just a few simple steps and start protecting your privacy immediately.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How BlurChat Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Install the Extension</h3>
+                        <p>Add BlurChat to your Chrome browser with just a few clicks.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Open WhatsApp Web</h3>
+                        <p>Navigate to WhatsApp Web as you normally would.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Toggle Privacy Mode</h3>
+                        <p>Click the BlurChat icon to instantly blur your chats and contacts.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Enjoy Privacy</h3>
+                        <p>Work in public spaces without worrying about prying eyes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo" class="demo">
+            <div class="container">
+                <h2>See BlurChat in Action</h2>
+                <div class="demo-container">
+		    <div class="demo-item">
+                        <img src="https://raw.githubusercontent.com/i-naeem/blurchat/refs/heads/alpha/assets/chat-ss.jpeg" alt="Blurred WhatsApp Web interface" width="400" height="300" loading="lazy">
+                        <p>Blurred screen: Your chats and contacts protected</p>
+                    </div>
+                    <div class="demo-item">
+                        <img src="https://raw.githubusercontent.com/i-naeem/blurchat/refs/heads/alpha/assets/home-ss.jpeg" alt="About screen of BlurChat" width="400" height="300" loading="lazy">
+                        <p>About screen: Learn more about BlurChat's features</p>
+                    </div> 
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2>What Our Users Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <p>"BlurChat has been a game-changer for my privacy. I can now use WhatsApp Web in public without worrying about nosy neighbors!"</p>
+                        <cite>- Sarah K., Freelance Designer</cite>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Simple, effective, and exactly what I needed. BlurChat does one thing and does it well."</p>
+                        <cite>- Mike R., Software Developer</cite>
+                    </div>
+                    <div class="testimonial">
+                        <p>"I love how easy it is to toggle the blur on and off. Great for quickly switching between privacy and accessibility."</p>
+                        <cite>- Emily T., Marketing Manager</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <details>
+                        <summary>Is BlurChat free to use?</summary>
+                        <p>Yes, BlurChat is completely free to download and use.</p>
+                    </details>
+                    <details>
+                        <summary>Does BlurChat work on mobile devices?</summary>
+                        <p>Currently, BlurChat is designed as a Chrome extension for desktop use. We're exploring options for mobile support in the future.</p>
+                    </details>
+                    <details>
+                        <summary>Can I still use WhatsApp Web normally with BlurChat installed?</summary>
+                        <p>BlurChat only activates when you toggle it on. When off, WhatsApp Web functions normally.</p>
+                    </details>
+                    <details>
+                        <summary>Is my data safe with BlurChat?</summary>
+                        <p>BlurChat does not collect or store any of your personal data or messages. It simply applies a visual blur effect to your browser.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Protect Your Privacy?</h2>
+                <p>Join thousands of users who trust BlurChat to keep their WhatsApp conversations private.</p>
+                <a href="https://github.com/i-naeem/blurchat/releases/tag/v1.0.0" class="btn btn-primary" id="install-extension-footer">Add BlurChat to Chrome</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://raw.githubusercontent.com/i-naeem/blurchat/refs/heads/alpha/assets/icon.png" alt="BlurChat Logo" width="40" height="40">
+                    BlurChat
+                </div>
+                <div class="footer-social">
+                    <ul>
+                        <li><a href="https://github.com/i-naeem" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a></li>
+                        <li><a href="https://twitter.com/0x656e" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BlurChat. All rights reserved. Developed by <a href="https://github.com/i-naeem" target="_blank" rel="noopener noreferrer">Naeem</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const installButtons = document.querySelectorAll('#install-extension, #install-extension-footer');
+
+            // Mobile menu toggle
+            mobileMenuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Intersection Observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.feature-item, .step, .testimonial').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
+

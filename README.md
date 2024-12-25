@@ -92,4 +92,4 @@ If you have suggestions, bug fixes, or improvements, feel free to open an issue 
 
 Naeem - [@nemoxhan](https://twitter.com/0x656e)
 
-Project Link: [https://github.com/i-naeem/blurchat](https://github.com/i-naeem/heyming)
+Project Link: [https://github.com/i-naeem/blurchat](https://github.com/i-naeem/blurchat)

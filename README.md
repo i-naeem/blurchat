@@ -15,7 +15,8 @@ BlurChat is a simple Chrome extension that blurs the chat window on <a href="htt
 <a href="https://github.com/i-naeem/blurchat/issues">Report Bug</a>
 ·
 <a href="https://github.com/i-naeem/blurchat/issues">Request Feature</a>
-
+·
+<a href="https://chromewebstore.google.com/detail/blurchat/nhndojajncibjgdmihadlejpbpngkmkf">Download Extension</a>
 </p>
 
 </div>

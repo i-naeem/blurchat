@@ -1,9 +1,11 @@
+
+
 /* 
  * BlurChat Extension - CSS
  * Author: Naeem
  * Description: This CSS applies a blur effect to the WhatsApp Web chats for privacy purposes.
  * The blur effect is applied to non-active chats and removed when hovering or selecting a chat.
- * Version: 1.0.0
+ * Version: 1.1.0
  */
 
 /* 
@@ -12,6 +14,7 @@
  */
  div[role="listitem"] div[aria-selected="false"],
  div[role="listitem"] div[aria-selected="true"],
+div[aria-label="Chat list"] div[role="row"],
  ._amid,
  .focusable-list-item {
    filter: blur(3px); /* Blurs chat items */
@@ -31,7 +34,8 @@
  /* 
   * Remove the blur effect on the active chat, so the user can see the chat content clearly.
   */
- div[role="listitem"] div[aria-selected="true"] {
+div[role="listitem"] div[aria-selected="true"]
+{
    filter: blur(0px); /* Ensures the active chat is clear */
  }
  
